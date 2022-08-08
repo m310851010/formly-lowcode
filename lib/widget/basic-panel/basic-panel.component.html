@@ -1,0 +1,38 @@
+<div
+  nz-resizable
+  [nzDisabled]="!resizeable"
+  [style.width.px]="width"
+  (nzResize)="width = $event.width"
+  nzBounds="window"
+  style="height: 100%"
+>
+  <nz-card
+    [nzTitle]="titleTemplate"
+    [nzExtra]="extraTemplate"
+    class="flex-card"
+    nzSize="small"
+    [nzBodyStyle]="{ padding: bodyPadding }"
+  >
+    <ng-content></ng-content>
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </nz-card>
+
+  <nz-resize-handle *ngIf="resizeable" [nzDirection]="resizeDirection"></nz-resize-handle>
+</div>
+
+<ng-template #titleTemplate>
+  <span class="panel-title">
+    <ng-container *nzStringTemplateOutlet="title">{{ title }}</ng-container>
+  </span>
+</ng-template>
+
+<ng-template #extraTemplate>
+  <ng-container *ngTemplateOutlet="extra"></ng-container>
+  <button *ngIf="pushpinVisible !== false" type="button" class="panel-icon" (click)="pushpinToggle = !pushpinToggle">
+    <i nz-icon nzType="pushpin" [nzTheme]="pushpinToggle ? 'outline' : 'fill'"></i>
+  </button>
+
+  <button *ngIf="closeVisible !== false" type="button" class="panel-icon">
+    <i nz-icon nzType="close"></i>
+  </button>
+</ng-template>

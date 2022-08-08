@@ -1,0 +1,36 @@
+@import '../../editor-theme';
+@widget-container-wrapper: ~'@{prefix}-widget-container-wrapper';
+
+.@{widget-container-wrapper} {
+  .@{prefix}-drag-placeholder{
+    height: 3px;
+    position: relative;
+    z-index: 2;
+    background: @primary-color;
+    overflow: hidden;
+    margin: 0;
+    padding:0;
+    .widget-inner {
+      display: none;
+    }
+  }
+}
+
+.cdk-drop-list.drop-box-placeholder {
+    position: relative;
+    background: #f1f1f1;
+    border: 1px solid #e0e0e0;
+    min-height: 48px;
+    min-width: 48px;
+    padding: 8px;
+    box-sizing: border-box;
+
+    &:after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: #a7b1bd;
+      transform:translate(-50%, -50%);
+      content: '拖拽组件到这里';
+    }
+}

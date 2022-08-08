@@ -1,0 +1,42 @@
+@import '../../editor-theme';
+@basic-toolbar: ~'@{prefix}-basic-toolbar';
+
+.@{basic-toolbar} {
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  .edt-toolbar {
+    display: flex;
+    height: 100%;
+    width: 100%;
+
+    &__vertical {
+      flex-direction: column;
+      justify-content: center;
+      display: flex;
+
+      .layout__center {
+        flex: 1;
+        align-items: center;
+      }
+    }
+
+    &__horizontal {
+      align-items: center;
+      display: flex;
+      .layout__center {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+
+    &__none-shadow {
+      border: 0;
+      box-shadow: none;
+      outline: 0;
+      text-decoration: none;
+      text-shadow: none;
+    }
+  }
+}

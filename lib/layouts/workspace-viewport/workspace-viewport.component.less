@@ -1,0 +1,54 @@
+@import '../../editor-theme';
+@workspace-viewport: ~'@{prefix}-workspace-viewport';
+
+.flex-element() {
+  display: flex;
+  width: 100%;
+}
+
+.@{workspace-viewport} {
+  .block-element();
+  position: relative;
+  outline: none;
+  box-sizing: border-box;
+  user-select: none;
+  background: #fff;
+  box-shadow: #ebedf0 0 4px 12px;
+  margin: 10px;
+  display: flex;
+  overflow: auto;
+  flex: 1;
+
+  .@{prefix}-component-item {
+    width: 100%;
+  }
+
+  &-formly-form {
+    .block-element();
+    width: 100%;
+    .ant-form-item{ margin-bottom: 0}
+    > formly-field {
+      .block-element();
+      >.@{widget-container-wrapper}{
+        .block-element();
+      }
+    }
+  }
+
+  .@{prefix}-workspace {
+    min-height: 100%;
+    padding: 5px;
+  }
+
+  .editor-empty{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #a7b1bd;
+    transform:translate(-50%, -50%);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

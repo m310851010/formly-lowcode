@@ -1,0 +1,19 @@
+<nz-tabset nzTabPosition="right" (nzSelectedIndexChange)="selectPanel = tabs[$event]">
+  <nz-tab *ngFor="let tab of tabs" [nzTitle]="titleTemplate">
+    <ng-template #titleTemplate>
+      <div [nz-tooltip]="tab.tooltip" class="tab-sidebar-title">
+        <i *ngIf="tab.icon" nz-icon [nzType]="tab.icon"></i>
+        <span *ngIf="tab.iconHtml" [innerHTML]="tab.iconHtml | trustHtml"></span>
+      </div>
+    </ng-template>
+  </nz-tab>
+</nz-tabset>
+
+<edt-basic-panel
+  [resizeable]="true"
+  [title]="selectPanel?.title"
+  style="margin-left: -1px"
+  [bodyPadding]="selectPanel?.hasCardPadding == null ? '0' : null"
+>
+  <ng-template *ngComponentOutlet="selectPanel?.component"></ng-template>
+</edt-basic-panel>

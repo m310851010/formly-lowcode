@@ -1,0 +1,75 @@
+<div class="edt-toolbar" [ngClass]="directionCls" [ngStyle]="toolbarPadding">
+  <div [ngClass]="directionCls" *ngIf="startItems?.length">
+    <ng-container *ngTemplateOutlet="listTemplate; context: { $implicit: startItems }"></ng-container>
+  </div>
+
+  <div [ngClass]="directionCls" class="layout__center">
+    <ng-container *ngTemplateOutlet="listTemplate; context: { $implicit: centerItems }"></ng-container>
+  </div>
+
+  <div [ngClass]="directionCls" *ngIf="endItems?.length">
+    <ng-container *ngTemplateOutlet="listTemplate; context: { $implicit: endItems }"></ng-container>
+  </div>
+
+  <ng-template #listTemplate let-items>
+    <nz-space nzAlign="center" [nzDirection]="direction" [nzSize]="spaceSize">
+      <ng-container *ngFor="let item of items">
+        <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item, items: items }"></ng-container>
+      </ng-container>
+
+      <ng-template #itemTemplate let-item let-items="items">
+        <ng-container *ngIf="isTemplate(item.text); else textTemplate">
+          <div *nzSpaceItem>
+            <ng-container *ngTemplateOutlet="item.text; context: { $implicit: item }"></ng-container>
+          </div>
+        </ng-container>
+
+        <ng-template #textTemplate>
+          <ng-container *ngIf="!item.separator">
+            <button
+              *nzSpaceItem
+              type="button"
+              nz-button
+              [nzSize]="$any(item.size) || itemSize"
+              [disabled]="item.disabled"
+              [nzLoading]="item.loading"
+              [nzShape]="item.shape"
+              [nzType]="item.type || 'text'"
+              [nz-tooltip]="item.tooltip"
+              (click)="item.click?.(item, items)"
+              [ngClass]="item.ngClass"
+              [ngStyle]="item.ngStyle"
+              [class.edt-toolbar__none-shadow]="item.hideShadow == null ? hideShadow : item.hideShadow"
+              nz-dropdown
+              [nzDropdownMenu]="item.dropdownMenu"
+            >
+              <i
+                *ngIf="item.icon"
+                nz-icon
+                [nzType]="item.icon"
+                class="icon-color"
+                [style.font-size]="item.iconSize || iconSize"
+                [style.color]="item.iconColor || iconColor"
+              ></i>
+              <div
+                *ngIf="item.iconHtml"
+                class="icon-color"
+                [style.font-size]="item.iconSize || iconSize"
+                [style.color]="item.iconColor || iconColor"
+                [innerHTML]="item.iconHtml | trustHtml"
+              ></div>
+              <span *ngIf="item.text != null" [innerHTML]="item.text"></span>
+              <i *ngIf="item.dropdownMenu" nz-icon nzType="down"></i>
+            </button>
+          </ng-container>
+          <nz-divider
+            *ngIf="item.separator"
+            [nzType]="direction === 'horizontal' ? 'vertical' : 'horizontal'"
+          ></nz-divider>
+        </ng-template>
+      </ng-template>
+    </nz-space>
+  </ng-template>
+</div>
+
+<ng-content></ng-content>

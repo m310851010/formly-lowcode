@@ -1,0 +1,64 @@
+@import '../../editor-theme';
+@basic-panel: ~'@{prefix}-basic-panel';
+
+.@{basic-panel} {
+  .block-element();
+  user-select: none;
+
+  .ant-card-bordered {
+    border: @edt-card-border;
+  }
+
+  .panel-icon {
+    border: 0;
+    background: none;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .panel-title {
+    font-size: 20px;
+    color: @edt-card-title-color;
+  }
+
+  .nz-resizable-handle:hover {
+    cursor: col-resize;
+  }
+
+  .flex-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .ant-card-head {
+      z-index: 3;
+    }
+    .ant-card-body {
+      flex: 1;
+      height: 100%;
+      overflow: auto;
+    }
+  }
+
+  &.card-pinning-left,
+  &.card-pinning-right {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+  }
+
+  &.card-pinning-left {
+    left: 100%;
+    box-shadow: 5px 0 10px -5px rgb(102 102 102 / 42%);
+    .ant-card-bordered {
+      border-right: 1px solid transparent;
+    }
+  }
+  &.card-pinning-right {
+    right: 100%;
+    box-shadow: -2px 5px 10px rgb(102 102 102 / 42%);
+    .ant-card-bordered {
+      border-left: 1px solid transparent;
+    }
+  }
+}

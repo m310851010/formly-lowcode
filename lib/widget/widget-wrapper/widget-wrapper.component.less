@@ -1,0 +1,77 @@
+@import '../../editor-theme';
+@widget-wrapper: ~'@{prefix}-widget-wrapper';
+
+.cdk-drag-preview .@{widget-wrapper} .@{widget-wrapper}-toolbar {
+  display: none !important;
+}
+
+.@{widget-wrapper} {
+  display: block;
+  position: relative;
+
+  &.edit-mode {
+    background-color: #fff;
+    border: 2px solid transparent;
+    outline: 1px dashed rgba(170, 170, 170, 0.5);
+    margin: 4px 2px;
+    padding: 3px;
+
+    .@{widget-wrapper}-toolbar {
+      position: absolute;
+      top: -21px;
+      right: 10px;
+      display: none;
+      z-index: 2;
+      &.bottom {
+        top: initial;
+        bottom: -21px;
+      }
+    }
+
+    .ant-form-item {
+      margin-bottom: 0;
+    }
+
+    &.hover {
+      outline: 1px dashed #409eff;
+      outline-offset: 0;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        content: ' ';
+        background: #197aff;
+        opacity: 0.05;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      > .label-text {
+        display: block;
+      }
+    }
+
+    &.active {
+      border-color: #197aff;
+      outline: none;
+      > .@{widget-wrapper}-toolbar {
+        display: block;
+      }
+    }
+  }
+  > .label-text {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #197aff;
+    z-index: 3;
+    background: #eee;
+    padding: 0 5px;
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,37 @@
+<div
+  [id]="field.fieldId || 'workspace'"
+  [ngClass]="dropListClasses"
+  [class.edt-workspace]="!field.fieldId"
+  [class.drop-box-placeholder]="field.parent && !field.fieldGroup?.length && isEditMode"
+  cdkDropList
+  [cdkDropListDisabled]="!isEditMode"
+  [cdkDropListEnterPredicate]="canEnter"
+  [cdkDropListConnectedTo]="connectedTo"
+  [cdkDropListData]="field"
+  (cdkDropListDropped)="onDropListDropped($event)"
+>
+  <formly-field
+    *ngFor="let f of field.fieldGroup"
+    [field]="f"
+    cdkDrag
+    [cdkDragData]="getItemDragData(f)"
+    (cdkDragStarted)="editorService!.dragStart = true"
+    (cdkDragReleased)="editorService!.dragStart = false"
+  >
+    <div class="edt-drag-placeholder" *cdkDragPlaceholder></div>
+  </formly-field>
+</div>
+
+<!--
+<div
+  cdkDropList
+  widgetDropList
+  #widgetDropList="widgetDropList"
+  [id]="field.fieldId || 'workspace'"
+  [field]="field"
+  [ngClass]="widgetDropList.dropListClasses"
+>
+  <formly-field *ngFor="let f of field.fieldGroup" [field]="f" cdkDrag widgetDrag>
+    <div class="edt-drag-placeholder" *cdkDragPlaceholder></div>
+  </formly-field>
+</div>-->

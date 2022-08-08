@@ -1,0 +1,37 @@
+@import '../../editor-theme';
+@composite-panel: ~'@{prefix}-composite-panel';
+
+.@{composite-panel} {
+  display: flex;
+  position: relative;
+  z-index: 2;
+
+  .ant-tabs {
+    color: #666;
+  }
+
+  .tab-sidebar-title {
+    padding: 4px 14px;
+  }
+
+  .ant-tabs-right > .ant-tabs-nav {
+    min-width: 0;
+    .ant-tabs-ink-bar {
+      width: 3px;
+    }
+
+    .ant-tabs-tab {
+      padding: 0;
+      margin-top: 5px;
+      font-size: 20px;
+
+      .anticon {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .ant-tabs-content-holder {
+    display: none;
+  }
+}

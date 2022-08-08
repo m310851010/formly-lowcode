@@ -1,0 +1,34 @@
+<nz-collapse class="editor-panel">
+  <nz-collapse-panel
+    *ngFor="let panel of panels"
+    [nzHeader]="panel.label"
+    [nzActive]="panel.active"
+    [nzDisabled]="panel.disabled"
+  >
+    <div
+      style="overflow: hidden"
+      cdkDropList
+      [cdkDropListDisabled]="dropEnter || !editorService?.isEditMode"
+      cdkDropListSortingDisabled
+      [cdkDropListData]="panel.widgets"
+      [cdkDropListEnterPredicate]="canEnter"
+      [cdkDropListConnectedTo]="connectedTo"
+      (cdkDropListExited)="onDropListExited(panel, $event)"
+    >
+      <div
+        draggable="false"
+        class="edt-component-item edt-drag-placeholder"
+        *ngFor="let item of panel.widgets; let i = index"
+        cdkDrag
+        (cdkDragStarted)="editorService!.dragStart = true"
+        [cdkDragData]="getItemDragData(item)"
+        (cdkDragReleased)="cdkDragReleased()"
+      >
+        <div class="widget-inner">
+          <i class="icon-formly-lowcode widget-icon" [ngClass]="item.icon"></i>
+          <span>{{ item.label }}</span>
+        </div>
+      </div>
+    </div>
+  </nz-collapse-panel>
+</nz-collapse>

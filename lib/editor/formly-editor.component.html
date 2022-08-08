@@ -1,0 +1,36 @@
+<div class="workbench">
+  <edt-workbench-header></edt-workbench-header>
+  <div class="workbench-body">
+    <edt-composite-panel></edt-composite-panel>
+    <div class="workspace-panel">
+      <edt-viewport-toolbar></edt-viewport-toolbar>
+      <edt-workspace-viewport [fields]="fields"></edt-workspace-viewport>
+    </div>
+    <edt-workbench-property></edt-workbench-property>
+  </div>
+</div>
+<!--
+
+<div style="display: flex" cdkDropListGroup>
+  <div style="width: 150px">
+    <p>Source</p>
+    <div
+      class="mat-list"
+      cdkDropList
+      [cdkDropListData]="sItems"
+      cdkDropListSortingDisabled
+      [cdkDropListEnterPredicate]="noReturnPredicate"
+      (cdkDropListExited)="onSourceListExited($event)"
+      (cdkDropListEntered)="onSourceListEntered($event)"
+    >
+      <div *ngFor="let item of sItems" cdkDrag [cdkDragData]="item" class="mat-list-item">{{ item.name }}</div>
+    </div>
+  </div>
+  <div style="width: 150px; margin-left: 15px">
+    <p>Destination</p>
+    <div cdkDropList class="mat-list" [cdkDropListData]="dItems" (cdkDropListDropped)="destinationDropped($event)">
+      <div *ngFor="let item of dItems" cdkDrag [cdkDragData]="item" class="mat-list-item">{{ item.name }}</div>
+    </div>
+  </div>
+</div>
+-->

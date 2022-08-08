@@ -1,0 +1,11 @@
+<div class="label-text" *ngIf="field.label">{{ field.label }}</div>
+<div *ngIf="editorService.isEditMode" class="edt-widget-wrapper-toolbar" [class.bottom]="isFirstChild">
+  <nz-button-group nzSize="small">
+    <button nz-button nzType="primary"><i nz-icon nzType="appstore"></i></button>
+    <button nz-button nzType="primary"><i nz-icon nzType="copy"></i></button>
+    <button nz-button nzType="primary" (click)="onRemoveField()"><i nz-icon nzType="delete"></i></button>
+  </nz-button-group>
+</div>
+<div nz-resizable>
+  <ng-container #fieldComponent></ng-container>
+</div>

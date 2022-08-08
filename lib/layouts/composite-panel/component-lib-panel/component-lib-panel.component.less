@@ -1,0 +1,37 @@
+@import '../../../editor-theme';
+@component-lib-panel: ~'@{prefix}-component-lib-panel';
+.@{component-lib-panel} {
+  .ant-collapse-content-box {
+    padding: 5px;
+  }
+}
+
+.@{prefix}-component-item {
+  width: 50%;
+  float: left;
+  padding: 2px;
+  box-sizing: border-box;
+
+  .widget-inner {
+    line-height: 24px;
+    font-size: 13px;
+    position: relative;
+    padding: 0 3px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: @edt-component-item-color;
+    cursor: move;
+    background: @edt-component-item-bg-color;
+    border: @edt-component-item-border;
+    &:hover {
+      color: @edt-component-item-hover-color;
+      border: 1px dashed @edt-component-item-hover-color;
+    }
+  }
+
+  .widget-icon {
+    margin-right: 6px;
+    margin-left: 8px;
+    vertical-align: baseline;
+  }
+}
