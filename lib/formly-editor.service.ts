@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { IEditorFormlyField } from './editor.types';
-import { Utils } from '@xmagic/nzx-antd/util';
+import { NzxUtils } from '@xmagic/nzx-antd/util';
 import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Injectable()
@@ -69,7 +69,7 @@ export class FormlyEditorService {
   resetField(fields: IEditorFormlyField[]) {
     this.fields = fields;
     this.fieldMap.clear();
-    Utils.forEachTree(
+    NzxUtils.forEachTree(
       fields,
       item => {
         if (!item.fieldId) {
@@ -88,7 +88,7 @@ export class FormlyEditorService {
    */
   resolveConnectedTo(): void {
     const levelList: string[][] = [];
-    Utils.forEachTree(
+    NzxUtils.forEachTree(
       this.fields,
       (field, p, level) => {
         if (!field.canHaveChildren) {
@@ -127,7 +127,7 @@ export class FormlyEditorService {
     const targetArray = this.getSiblings(parentFieldId);
     const to = this.clamp(targetIndex, targetArray.length);
 
-    const item = Utils.clone(current);
+    const item = NzxUtils.clone(current);
     item.parentFieldId = parentFieldId;
 
     this.addFieldId(item);
@@ -140,7 +140,7 @@ export class FormlyEditorService {
 
   private addFieldId(field: IEditorFormlyField) {
     field._design = true;
-    Utils.forEachTree(
+    NzxUtils.forEachTree(
       [field],
       (item, parentNode, level) => {
         if (!item.fieldId) {
@@ -208,7 +208,7 @@ export class FormlyEditorService {
   getSiblings(parentFieldId?: string): IEditorFormlyField[] {
     if (parentFieldId) {
       const parentField = this.fieldMap.get(parentFieldId);
-      return parentField ? Utils.get(parentField, parentField.childrenPath || 'fieldGroup', []) : [];
+      return parentField ? NzxUtils.get(parentField, parentField.childrenPath || 'fieldGroup', []) : [];
     }
     return this.fields;
   }
