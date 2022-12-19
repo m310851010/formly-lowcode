@@ -33,6 +33,38 @@
           }
         }
       }
+    },
+    "storybook": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "stories",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "tsConfig": "tsconfig.json",
+            "styles": ["stories/styles.less"],
+            "scripts": [],
+            "assets": [
+              {
+                "glob": "**/*",
+                "ignore": ["fill/*", "twotone/*"],
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["node_modules"]
+            }
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "browserTarget": "storybook:build"
+          }
+        }
+      }
     }
   },
   "defaultProject": "formly-lowcode"

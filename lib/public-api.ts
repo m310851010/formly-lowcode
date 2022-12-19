@@ -4,3 +4,4 @@
 export * from './editor/public-api';
 export * from './layouts/public-api';
 export * from './widget/public-api';
+export * from './formly-editor.service';

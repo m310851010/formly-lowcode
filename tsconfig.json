@@ -21,10 +21,18 @@
     "target": "es2017",
     "module": "es2020",
     "lib": ["ESNext", "dom"],
+    "lib": ["ESNext", "dom"],
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
     "paths": {
-      "@xmagic/formly-lowcode": ["dist/formly-lowcode", "lib/public-api"],
-      "@xmagic/formly-lowcode/*": ["dist/formly-lowcode/*", "lib/*"]
-    }
+      "@xmagic/formly-lowcode": ["lib/public-api"],
+      "@xmagic/formly-lowcode/*": ["lib/*"],
+      "@stories": ["stories"],
+      "@stories/*": ["stories/*"]
+    },
+    "typeRoots": ["./stories/@types", "./node_modules/@types"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -2,12 +2,8 @@
   "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../dist/formly-lowcode",
   "lib": {
-    "entryFile": "public-api.ts"
+    "entryFile": "public-api.ts",
+    "styleIncludePaths": ["node_modules"]
   },
-  "assets": [
-    "editor-theme.less",
-    "formly-editor.less",
-    "./lib/*.less",
-    "./lib/**/*.less"
-  ]
+  "assets": [  "./**/*.less", "assets/*"]
 }
